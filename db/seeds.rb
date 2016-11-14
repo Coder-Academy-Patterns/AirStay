@@ -40,6 +40,6 @@ Region.create!([
   Listing.create!(
     host: host_user,
     region: region,
-    address: "#{ region.name }, #{ region.country.name }"
+    address: region.address
   )
 end

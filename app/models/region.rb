@@ -18,6 +18,10 @@ class Region < ApplicationRecord
       ISO3166::Country.new(country_code)
     end
 
+    def address(prefix = nil)
+      [prefix, name, country.name].select(&:present?).join(', ')
+    end
+
     private
         def downcase_country_code
             self.country_code = self.country_code.downcase
