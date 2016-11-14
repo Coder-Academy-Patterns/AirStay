@@ -14,6 +14,10 @@ class Region < ApplicationRecord
     validates :country_code, presence: true, length: { is: 2 }, country_code: true
     before_save :downcase_country_code
 
+    def country
+      ISO3166::Country.new(country_code)
+    end
+
     private
         def downcase_country_code
             self.country_code = self.country_code.downcase

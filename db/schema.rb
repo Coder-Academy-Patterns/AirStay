@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109233643) do
+ActiveRecord::Schema.define(version: 20161114042431) do
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "host_id"
+    t.integer  "region_id"
+    t.string   "address"
+    t.decimal  "lat",        precision: 9, scale: 6
+    t.decimal  "lng",        precision: 9, scale: 6
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["address"], name: "index_listings_on_address", unique: true
+    t.index ["host_id"], name: "index_listings_on_host_id"
+    t.index ["region_id"], name: "index_listings_on_region_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "first_name"

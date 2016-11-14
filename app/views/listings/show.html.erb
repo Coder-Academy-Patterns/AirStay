@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @listing.host.email %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @listing.region.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @listing.address %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @listing.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @listing.lng %>
+</p>
+
+<div>
+  <%= render partial: 'map_embed', locals: { lat: @listing.lat, lng: @listing.lng } %>
+</div>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>

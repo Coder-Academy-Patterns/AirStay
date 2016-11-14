@@ -1,0 +1,7 @@
+<%= content_tag :iframe, '',
+  src: "https://maps.google.com/maps?" + { q: "#{ lat },#{ lng }", output: 'embed' }.to_query,
+  frameborder: 0,
+  width: 500,
+  height: 500,
+  allowfullscreen: true
+%>
