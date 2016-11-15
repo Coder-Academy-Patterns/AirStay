@@ -9,8 +9,7 @@ module Weather
 
       uri.query = URI.encode_www_form(
         q: "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text in (#{ addresses_commas })) and u='c'",
-        format: 'json',
-        u: 'c'
+        format: 'json'
       )
 
       # Create client
