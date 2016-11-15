@@ -17,7 +17,7 @@ Region.create!([
   { name: 'Sydney', country_code: 'au' },
   { name: 'Brisbane', country_code: 'au' },
 
-  { name: 'New York City', country_code: 'us' },
+  { name: 'New York', country_code: 'us' },
   { name: 'Los Angeles', country_code: 'us' },
   { name: 'Chicago', country_code: 'us' },
 
