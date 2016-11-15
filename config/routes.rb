@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :listings
   root 'home#index'
+  get 'explore' => 'explore#index'
 
   devise_for :users
   resources :profiles, except: [:index]

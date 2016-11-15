@@ -25,9 +25,9 @@ Region.create!([
   { name: 'Nice', country_code: 'fr' },
   { name: 'Marseille', country_code: 'fr' },
 
-  { name: 'Paris', country_code: 'de' },
-  { name: 'Nice', country_code: 'de' },
-  { name: 'Marseille', country_code: 'de' },
+  { name: 'Berlin', country_code: 'de' },
+  { name: 'Munich', country_code: 'de' },
+  { name: 'Cologne', country_code: 'de' },
 
   { name: 'Tokyo', country_code: 'jp' },
   { name: 'Kyoto', country_code: 'jp' },

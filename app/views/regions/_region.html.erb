@@ -1,0 +1,7 @@
+<article class="region">
+  <h2 class="region_country-name"><%= region.country.name %></h2>
+  <h3 class="region_name"><%= region.name %></h3>
+  <% if region.weather.present? %>
+    <%= render partial: 'regions/weather', locals: { weather: region.weather } %>
+  <% end %>
+</article>
