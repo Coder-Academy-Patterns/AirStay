@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114231859) do
+ActiveRecord::Schema.define(version: 20161114042431) do
 
   create_table "listings", force: :cascade do |t|
     t.integer  "host_id"

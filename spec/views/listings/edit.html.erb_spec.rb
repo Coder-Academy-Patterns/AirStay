@@ -2,12 +2,17 @@ require 'rails_helper'
 
 RSpec.describe "listings/edit", type: :view do
   before(:each) do
+    host_user = User.create!(
+      email: 'host@example.com',
+      password: 'ABCDEF123456',
+      password_confirmation: 'ABCDEF123456'
+    )
+    region = Region.create!(name: 'Melbourne', country_code: 'au')
+
     @listing = assign(:listing, Listing.create!(
-      :host => nil,
-      :region => nil,
-      :address => "MyString",
-      :lat => "9.99",
-      :lng => "9.99"
+      :host => host_user,
+      :region => region,
+      :address => region.address
     ))
   end
 
@@ -21,10 +26,7 @@ RSpec.describe "listings/edit", type: :view do
       assert_select "input#listing_region_id[name=?]", "listing[region_id]"
 
       assert_select "input#listing_address[name=?]", "listing[address]"
-
-      assert_select "input#listing_lat[name=?]", "listing[lat]"
-
-      assert_select "input#listing_lng[name=?]", "listing[lng]"
+      
     end
   end
 end

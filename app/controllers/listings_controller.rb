@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+  #before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   # GET /listings
@@ -12,7 +13,7 @@ class ListingsController < ApplicationController
       regions = Region.all
       regions = regions.where(name: region_name) if region_name.present?
       regions = regions.where(country_code: country_code) if country_code.present?
-      @listings = Listing.where(region: regions)  
+      @listings = Listing.where(region: regions)
     else
       # Show all listings
       @listings = Listing.all
