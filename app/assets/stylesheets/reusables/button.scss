@@ -1,0 +1,36 @@
+@import "./base";
+
+@mixin no-link {
+  color: $text-color;
+  text-decoration: none;
+}
+
+@mixin button($outline: false, $light: false, $reduce-right: false) {
+  display: inline-block;
+
+  padding: 0 ($line-height * 0.444rem);
+  @if $reduce-right {
+    padding-right: ($line-height * 0.222rem);
+  }
+
+  @if $outline {
+    color: $text-color;
+    border: 2px solid $text-color;
+  }
+  @elseif $light {
+    color: $text-color;
+    background-color: white;
+
+    &:hover {
+      color: $background-color;
+      background-color: $text-color;
+    }
+  }
+  @else {
+    color: $background-color;
+    background-color: $text-color;
+  }
+  
+  border-radius: 0.5rem * $line-height;
+  text-decoration: none;
+}

@@ -19,15 +19,16 @@
     &_item {
       &_weekday {
         display: inline-block;
-        width: 3.9em;
+        width: 4em;
       }
       &_temperature {
         display: inline-block;
-        width: 6em;
+        width: 5.8em;
       }
       &_condition {
         display: inline-block;
         font-style: italic;
+        min-width: 10em;
       }
     }
   }

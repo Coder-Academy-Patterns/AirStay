@@ -1,17 +1,19 @@
+@import "reusables/base";
+
 html {
-  background-color: #f6f6f6;
-  color: #222;
+  background-color: $background-color;
+  color: $text-color;
   font-family: system, "-apple-system", "-webkit-system-font", BlinkMacSystemFont, "Helvetica Neue", "Helvetica", "Segoe UI", "Roboto", "Arial", "freesans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 18px;
 	font-size: calc(112.5% + 2 * (100vw - 600px) / 400);
-  line-height: 1.35;
+  line-height: $line-height;
   margin: 1rem;
 }
 
 article {
   max-width: 30rem;
   margin: auto;
-  margin-bottom: 1.35rem;
+  margin-bottom: 2.7rem;
 }
 
 p, ol, ul, td, h1, h2, h3, h4, h5, h6 {
@@ -26,15 +28,8 @@ pre {
 }
 
 a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
   &:hover {
     color: #fff;
-    background-color: #000;
   }
 }
 

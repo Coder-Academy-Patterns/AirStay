@@ -11,6 +11,8 @@ class Region < ApplicationRecord
     end
   end
 
+  has_many :listings
+
   validates :name, presence: true
   validates :country_code, presence: true, length: { is: 2 }, country_code: true
   before_save :downcase_country_code
@@ -27,20 +29,19 @@ class Region < ApplicationRecord
   end
 
   def weather
-    @weather ||= weather_for_address(address)
+    Region.load_weathers_for([self]) if @weather.nil?
+    @weather
   end
 
-  def self.weathers_for(regions)
+  def self.load_weathers_for(regions)
     weathers = self.weathers_for_addresses(regions.map(&:address))
-    regions.reduce({}) do |hash, region|
+    regions.each do |region|
       city = region.name
       country_name = region.country.name
       weather = weathers.find { |weather| weather.dig('location', 'city') == city and weather.dig('location', 'country') == country_name }
       if weather.present?
         region.weather = weather
-        hash[region] = weather
       end
-      hash
     end
   end
 
