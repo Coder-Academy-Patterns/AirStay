@@ -1,13 +1,15 @@
+<% home_icon = render 'shared/fa', id: 'home' %>
+
 <p id="notice"><%= notice %></p>
 
 <% if @regions.nil? %>
-  <h1>Listings</h1>
+  <h1><%= home_icon %> Listings</h1>
 <% elsif @regions.count == 1 %>
-  <h1>Listings in <%= @regions.first.address %></h1>
+  <h1><%= home_icon %> in <%= @regions.first.address %></h1>
 <% elsif @country.present? %>
-  <h1>Listings in <%= @country.name %></h1>
+  <h1><%= home_icon %> in <%= @country.name %></h1>
 <% else %>
-  <h1>Listings in <%= pluralize(@regions.count, 'region') %></h1>
+  <h1><%= home_icon %> in <%= pluralize(@regions.count, 'region') %></h1>
 <% end %>
 
 <table>

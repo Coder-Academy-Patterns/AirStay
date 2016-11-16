@@ -19,7 +19,7 @@
     margin-left: ($line-height * 0.5rem);
 
     a {
-      @include button($light: true, $reduce-right: true);
+      @include button($light: true);
     }
 
     .fa {

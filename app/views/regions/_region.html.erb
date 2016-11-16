@@ -6,8 +6,8 @@
     <!--<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>-->
     <span class="region_listing-count">
       <%= link_to(listings_path(params: { country_code: region.country_code, region_name: region.name })) do %>
-        <%= pluralize(region.listings.count, 'listing') %>
-        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        <%= region.listings.count %>
+        <i class="fa fa-home" aria-hidden="true"></i>
       <% end %>
     </span>
   </h2>
