@@ -5,7 +5,7 @@
   text-decoration: none;
 }
 
-@mixin button($outline: false, $light: false, $reduce-right: false) {
+@mixin button($primary: false, $outline: false, $light: false, $full-width: false, $reduce-right: false) {
   display: inline-block;
 
   padding: 0 ($line-height * 0.444rem);
@@ -13,9 +13,23 @@
     padding-right: ($line-height * 0.222rem);
   }
 
-  @if $outline {
+  @if $primary {
     color: $text-color;
-    border: 2px solid $text-color;
+    background-color: $key-color;
+
+    &:hover {
+      color: $key-color;
+      background-color: $text-color;
+    }
+  }
+  @elseif $outline {
+    color: $text-color;
+    border: 1px solid $text-color;
+
+    &:hover {
+      color: $background-color;
+      background-color: $text-color;
+    }
   }
   @elseif $light {
     color: $text-color;
@@ -30,7 +44,12 @@
     color: $background-color;
     background-color: $text-color;
   }
-  
+
+  @if $full-width {
+    display: block;
+    text-align: center;
+  }
+
   border-radius: 0.5rem * $line-height;
   text-decoration: none;
 }

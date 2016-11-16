@@ -10,10 +10,14 @@ html {
   margin: 1rem;
 }
 
-article {
-  max-width: 30rem;
-  margin: auto;
-  margin-bottom: 2.7rem;
+main {
+  > header,
+  > article,
+  > nav {
+    max-width: 30rem;
+    margin: auto;
+    margin-bottom: 2.7rem;
+  }
 }
 
 p, ol, ul, td, h1, h2, h3, h4, h5, h6 {
@@ -32,8 +36,10 @@ pre {
 }
 
 a {
+  text-decoration: none;
+
   &:hover {
-    color: #fff;
+    color: $key-color;
   }
 }
 
