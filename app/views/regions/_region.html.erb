@@ -11,7 +11,8 @@
       <% end %>
     </span>
   </h2>
-  <h3 class="region_country-name"><%= region.country.name %></h3>
+
+  <h3 class="region_country-name"><%= region.country.name %> <%= region.country.emoji_flag %></h3>
 
   <% if show_weather and region.weather.present? %>
     <%= render partial: 'regions/weather', locals: { weather: region.weather } %>

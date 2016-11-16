@@ -11,22 +11,34 @@ html {
 }
 
 main {
+  > section,
   > header,
   > article,
   > nav {
     max-width: 30rem;
     margin: auto;
+  }
+
+  section,
+  header,
+  article,
+  nav {
     margin-bottom: 2.7rem;
   }
 }
 
-p, ol, ul, td, h1, h2, h3, h4, h5, h6 {
+p, ol, ul, td, h1, h2, h3, h4, h5, h6, input {
   margin-top: 0;
   margin-bottom: 1.35rem;
 }
 
 h1 {
   font-size: 1.5rem;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
 }
 
 pre {

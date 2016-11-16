@@ -28,8 +28,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
-gem 'countries'
+gem 'countries', '~> 2'
 gem 'geocoder'
+
+gem 'lodash-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

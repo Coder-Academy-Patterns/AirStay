@@ -17,8 +17,24 @@ class Region < ApplicationRecord
   validates :country_code, presence: true, length: { is: 2 }, country_code: true
   before_save :downcase_country_code
 
+  scope :name_eq, -> (name) { where('lower(name) = lower(?)', name) }
+  scope :name_starts_with, -> (name) { where('name like ?', "#{name}%") }
+  scope :country_search, -> (query) {
+    # Lowercase query here for efficiency
+    query = query.downcase
+    # Find countries with name starting with query
+    country_codes = ISO3166::Country.codes.find_all do |alpha2|
+      country = ISO3166::Country.new(alpha2)
+      country.name.downcase.start_with?(query)
+    end
+    # Make country codes lowercase
+    country_codes = country_codes.map(&:downcase)
+    # Scope to country codes
+    where(country_code: country_codes)
+  }
+
   def country
-    ISO3166::Country.new(country_code)
+    @country ||= ISO3166::Country.new(country_code)
   end
 
   def address(prefix = nil)

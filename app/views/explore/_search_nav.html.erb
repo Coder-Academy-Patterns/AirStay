@@ -1,0 +1,6 @@
+<nav>
+  <%= form_for :search, remote: true, authenticity_token: true, html: { id: 'explore-search-form' } do |f| %>
+    <%= f.label :where, 'Where' %>
+    <%= f.text_field :where %>
+  <% end %>
+</nav>

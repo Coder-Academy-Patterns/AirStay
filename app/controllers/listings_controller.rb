@@ -11,8 +11,8 @@ class ListingsController < ApplicationController
     if region_name.present? or country_code.present?
       # Filter by region name or country
       @regions = Region.all
-      @regions = @regions.where('lower(name) = lower(?)', region_name) if region_name.present?
-      @regions = @regions.where(country_code: country_code.downcase) if country_code.present?
+      @regions = @regions.name_eq(region_name) if region_name.present?
+      @regions = @regions.country_code_eq(country_code) if country_code.present?
       @listings = Listing.where(region: @regions)
 
       @country = ISO3166::Country.new(country_code) if country_code.present?
