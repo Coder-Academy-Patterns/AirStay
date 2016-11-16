@@ -16,7 +16,14 @@
 <nav>
   <h2>
     <%= link_to explore_path do %>
-      <i class="fa fa-compass" aria-hidden="true"></i> Explore
+      <i class="fa fa-compass fa-spin" aria-hidden="true"></i> Explore
     <% end %>
   </h2>
+  <% if user_signed_in? %>
+    <h3>
+      <%= link_to new_listing_path do %>
+        <i class="fa fa-star" aria-hidden="true"></i> Become a Host
+      <% end %>
+    </h3>
+  <% end %>
 </nav>

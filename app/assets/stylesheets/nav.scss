@@ -12,4 +12,12 @@ nav {
       @include button($primary: true, $full-width: true);
     }
   }
+
+  > h3 {
+    line-height: 3 * $line-height;
+
+    > a {
+      @include button($light: true, $full-width: true);
+    }
+  }
 }
