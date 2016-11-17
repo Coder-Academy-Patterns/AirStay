@@ -11,6 +11,11 @@ host_user = User.create!(
   password: 'ABCDEF123',
   password_confirmation: 'ABCDEF123'
 )
+Profile.create!(
+  user: host_user,
+  first_name: 'Example',
+  last_name: 'Host'
+)
 
 Region.create!([
   { name: 'Melbourne', country_code: 'au' },

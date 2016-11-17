@@ -28,8 +28,9 @@
 
   <tbody>
     <% @listings.each do |listing| %>
+      <% profile = listing.host.profile %>
       <tr>
-        <td><%= listing.host.email %></td>
+        <td><%= render profile, locals: { small: true } if profile.present? %></td>
         <td><%= listing.address %></td>
         <td><%= listing.lat %></td>
         <td><%= listing.lng %></td>

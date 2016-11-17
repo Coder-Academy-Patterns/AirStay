@@ -2,7 +2,7 @@
 
 <p>
   <strong>Host:</strong>
-  <%= @listing.host.email %>
+  <%= @listing.host.profile.try { |profile| render profile } %>
 </p>
 
 <p>
