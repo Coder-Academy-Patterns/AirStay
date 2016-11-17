@@ -19,6 +19,7 @@ class Region < ApplicationRecord
 
   scope :name_eq, -> (name) { where('lower(name) = lower(?)', name) }
   scope :name_starts_with, -> (name) { where('name like ?', "#{name}%") }
+  scope :country_code_eq, -> (country_code) { where(country_code: country_code.downcase) }
   scope :country_search, -> (query) {
     # Lowercase query here for efficiency
     query = query.downcase
