@@ -1,0 +1,5 @@
+@import "reusables/button";
+
+input[type='submit'] {
+  @include button($primary: true);
+}

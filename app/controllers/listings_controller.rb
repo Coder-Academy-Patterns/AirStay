@@ -1,6 +1,8 @@
 class ListingsController < ApplicationController
-  #before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :require_host_signed_in, only: [:edit, :update, :destroy]
+  before_action :set_countries, only: [:new, :edit]
 
   # GET /listings
   # GET /listings.json
@@ -39,7 +41,14 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(listing_params)
+    @listing = Listing.new(host: current_user)
+
+    address_hash = address_params
+    region = Region.country_code_eq(address_hash[:region_country_code_upper]).name_eq(address_hash[:region_city]).first!
+    address = region.address(address_hash[:street])
+
+    @listing.region = region
+    @listing.address = address
 
     respond_to do |format|
       if @listing.save
@@ -82,8 +91,16 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
+    def set_countries
+      @countries = ISO3166::Country.codes.map{ |alpha2| ISO3166::Country.new(alpha2) }
+    end
+
+    def require_host_signed_in
+      redirect_to listings_url unless @listing.host == current_user
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
-    def listing_params
-      params.require(:listing).permit(:host_id, :region_id, :address, :lat, :lng)
+    def address_params
+      params.require(:listing).permit(:region_country_code_upper, :region_city, :street)
     end
 end

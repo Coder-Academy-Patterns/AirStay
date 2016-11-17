@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114042431) do
+ActiveRecord::Schema.define(version: 20161117051321) do
 
   create_table "listings", force: :cascade do |t|
     t.integer  "host_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20161114042431) do
     t.string   "country_code"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["country_code"], name: "index_regions_on_country_code"
   end
 
   create_table "users", force: :cascade do |t|

@@ -7,6 +7,7 @@
 
 @mixin button($primary: false, $outline: false, $light: false, $full-width: false, $reduce-right: false) {
   display: inline-block;
+  font-size: 1rem;
 
   padding: 0 ($line-height * 0.444rem);
   @if $reduce-right {
@@ -16,6 +17,7 @@
   @if $primary {
     color: $text-color;
     background-color: $key-color;
+    border: none;
 
     &:hover {
       color: $key-color;
@@ -34,6 +36,7 @@
   @elseif $light {
     color: $text-color;
     background-color: white;
+    border: none;
 
     &:hover {
       color: $background-color;
@@ -43,6 +46,7 @@
   @else {
     color: $background-color;
     background-color: $text-color;
+    border: none;
   }
 
   @if $full-width {
