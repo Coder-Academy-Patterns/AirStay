@@ -10,6 +10,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+
+    redirect_to root_url, alert: 'You already have a profile' if current_user.profile.present?
   end
 
   # GET /profiles/1/edit
