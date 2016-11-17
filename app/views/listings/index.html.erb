@@ -22,7 +22,6 @@
       <th>Address</th>
       <th>Lat</th>
       <th>Lng</th>
-      <th></th>
     </tr>
   </thead>
 
@@ -31,10 +30,9 @@
       <% profile = listing.host.profile %>
       <tr>
         <td><%= render profile, locals: { small: true } if profile.present? %></td>
-        <td><%= listing.address %></td>
+        <td><%= link_to listing.address, listing %></td>
         <td><%= listing.lat %></td>
         <td><%= listing.lng %></td>
-        <td><%= link_to 'Show', listing %></td>
       </tr>
     <% end %>
   </tbody>
