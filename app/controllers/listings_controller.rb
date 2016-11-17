@@ -10,8 +10,8 @@ class ListingsController < ApplicationController
     region_name = params[:region_name]
     country_code = params[:country_code]
     
+    # Filter by region name or country
     if region_name.present? or country_code.present?
-      # Filter by region name or country
       @regions = Region.all
       @regions = @regions.name_eq(region_name) if region_name.present?
       @regions = @regions.country_code_eq(country_code) if country_code.present?
@@ -22,6 +22,10 @@ class ListingsController < ApplicationController
       # Show all listings
       @listings = Listing.all
     end
+
+    # Filter by host
+    host_id = params[:host]
+    @listings = @listings.where(host_id: host_id) if host_id.present?
   end
 
   # GET /listings/1

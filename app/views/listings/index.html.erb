@@ -27,9 +27,15 @@
 
   <tbody>
     <% @listings.each do |listing| %>
-      <% profile = listing.host.profile %>
+      <% host = listing.host %>
       <tr>
-        <td><%= render profile, locals: { small: true } if profile.present? %></td>
+        <td>
+          <% if host.profile.present? %>
+            <%= link_to(listings_path(params: { host: host })) do %>
+              <%= render host.profile, locals: { small: true } %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to listing.address, listing %></td>
         <td><%= listing.lat %></td>
         <td><%= listing.lng %></td>
