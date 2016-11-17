@@ -44,19 +44,33 @@ class Region < ApplicationRecord
     [prefix, name, country.name].select(&:present?).join(', ')
   end
 
-  def weather
-    Region.load_weathers_for([self]) if @weather.nil?
+  def weather(options = {})
+    load = options.fetch(:load, false)
+    Region.load_weathers_for([self]) if load and @weather.nil?
     @weather
   end
 
+  WEATHER_CACHE_EXPIRY = 5.minute
+
+  def weather_cache_key
+    "region.address(#{address}).weather"
+  end
+
   def self.load_weathers_for(regions)
-    weathers = self.weathers_for_addresses(regions.map(&:address))
-    regions.each do |region|
+    regions_to_fetch = regions.to_a.select do |region|
+      region.weather ||= Rails.cache.fetch(region.weather_cache_key)
+      region.weather(load: false).nil?
+    end 
+    # regions_to_fetch = regions
+
+    weathers = self.weathers_for_addresses(regions_to_fetch.map(&:address))
+    regions_to_fetch.each do |region|
       city = region.name
       country_name = region.country.name
       weather = weathers.find { |weather| weather.dig('location', 'city') == city and weather.dig('location', 'country') == country_name }
       if weather.present?
         region.weather = weather
+        Rails.cache.write(region.weather_cache_key, weather, expires_in: WEATHER_CACHE_EXPIRY)
       end
     end
   end
