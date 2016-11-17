@@ -68,7 +68,7 @@ class Region < ApplicationRecord
     regions_to_fetch.each do |region|
       city = region.name
       country_name = region.country.name
-      weather = weathers.find { |weather| weather.dig('location', 'city') == city and weather.dig('location', 'country') == country_name }
+      weather = weathers.find { |weather| weather.dig('location', 'city') == city and country_name.starts_with?(weather.dig('location', 'country')) }
       if weather.present?
         region.weather = weather
         Rails.cache.write(region.weather_cache_key, weather, expires_in: WEATHER_CACHE_EXPIRY)
