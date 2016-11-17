@@ -12,9 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :region_id %>
+    <%= f.label 'Country' %>
     <%= f.collection_select :region_country_code_upper, @countries, :alpha2, :name %>
-    <br>
+  </div>
+
+  <div class="field">
+    <%= f.label 'City' %>
     <%= f.text_field :region_city %>
   </div>
 
