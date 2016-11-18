@@ -2,6 +2,16 @@
   <figure>
   </figure>
 
+  <% if @earliest_available_date %>
+    <p>💁 Available on <%= @earliest_available_date.to_formatted_s(:long) %></p>
+  <% end %>
+
+  <% if @new_trip %>
+    <section class="listing_book">
+      <%= render(partial: 'trips/form', locals: { trip: @new_trip }) %>
+    </section>
+  <% end %>
+
   <p>
     <strong>Address:</strong>
     <%= @listing.address %>

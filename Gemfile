@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'countries', '~> 2'
 gem 'geocoder'
+gem 'validates_overlap'
 
 gem 'lodash-rails'
 

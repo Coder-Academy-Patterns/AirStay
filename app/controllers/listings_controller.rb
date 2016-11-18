@@ -31,6 +31,16 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
+    @earliest_available_date = @listing.earliest_available_date
+
+    if user_signed_in? and @earliest_available_date
+      @new_trip = Trip.new(
+        guest: current_user,
+        listing: @listing,
+        check_in_date: @earliest_available_date,
+        check_out_date: @earliest_available_date + 1
+      )
+    end
   end
 
   # GET /listings/new

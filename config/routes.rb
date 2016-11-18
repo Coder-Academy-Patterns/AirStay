@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :listings
+  resources :trips, except: [:new]
   root 'home#index'
 
   get 'explore' => 'explore#index'

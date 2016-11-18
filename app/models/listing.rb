@@ -20,3 +20,13 @@ class Listing < ApplicationRecord
     address.try { |address| address.split(',').reverse.drop(2).map(&:strip).reverse.join(', ') }
   end
 end
+
+class Listing
+  def available_date_ranges(days_ahead, start_date)
+    Trip.available_date_ranges_for_listing(self, days_ahead, start_date)
+  end
+
+  def earliest_available_date(days_ahead = 30)
+    @earliest_date_available ||= Trip.earliest_available_date_for_listing(self, days_ahead, Date.today)
+  end
+end

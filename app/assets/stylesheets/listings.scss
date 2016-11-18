@@ -35,4 +35,8 @@ $listing-gutter: line-height-rem(0.25);
     width: 100%;
     height: auto;
   }
+
+  &_book {
+    @include card;
+  }
 }
