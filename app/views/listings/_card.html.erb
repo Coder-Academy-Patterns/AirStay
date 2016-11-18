@@ -1,0 +1,15 @@
+<article class="listing">
+  <%= link_to listing, class: 'listing_primary-link' do %>
+    <figure class="listing_figure">
+      <%= image_tag "https://source.unsplash.com/800x600?#{ CGI.escape(listing.city_name) }",
+        alt: listing.city_name, class: 'listing_image'
+      %>
+    </figure>
+    <figcaption>
+      <strong>
+        PRICE
+      </strong>
+      <span><%= listing.city_name %></span>
+    </figcaption>
+  <% end %>
+</article>

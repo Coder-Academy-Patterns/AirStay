@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <section id="flash">
+      <% flash.each do |type, message| %>
+        <%= content_tag :h5, message, id: "flash-#{ type }" %>
+      <% end %>
+    </section>
+
     <main>
       <%= yield %>
     </main>

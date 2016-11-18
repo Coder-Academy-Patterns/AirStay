@@ -11,7 +11,7 @@ class Listing < ApplicationRecord
     region.try(:country_code).try(:upcase)
   end
 
-  def region_city
+  def city_name
     region.try(:name)
   end
 

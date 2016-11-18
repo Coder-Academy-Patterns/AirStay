@@ -1,0 +1,16 @@
+@import "./base";
+
+@mixin card($light: true) {
+  padding: ($line-height * 0.5rem);
+
+  @if $light {
+    color: $text-color;
+    background-color: white;
+  }
+  @else {
+    color: $background-color;
+    background-color: $text-color;
+  }
+
+  border-radius: 0.5rem * $line-height;
+}

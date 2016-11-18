@@ -1,5 +1,9 @@
 @import "reusables/base";
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-color: $background-color;
   color: $text-color;
@@ -15,21 +19,27 @@ main {
   > header,
   > article,
   > nav {
-    max-width: 30rem;
+    max-width: $measure;
     margin: auto;
   }
 
+  header {
+    margin-bottom: line-height-rem(1);
+  }
   section,
-  header,
   article,
   nav {
-    margin-bottom: 2.7rem;
+    margin-bottom: line-height-rem(2);
   }
 }
 
 p, ol, ul, td, h1, h2, h3, h4, h5, h6, input {
   margin-top: 0;
   margin-bottom: 1.35rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 h1 {

@@ -48,7 +48,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(host: current_user)
 
     address_hash = address_params
-    region = Region.country_code_eq(address_hash[:region_country_code_upper]).name_eq(address_hash[:region_city]).first!
+    region = Region.country_code_eq(address_hash[:region_country_code_upper]).name_eq(address_hash[:city_name]).first!
     address = region.address(address_hash[:street])
 
     @listing.region = region
@@ -105,6 +105,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.require(:listing).permit(:region_country_code_upper, :region_city, :street)
+      params.require(:listing).permit(:region_country_code_upper, :city_name, :street)
     end
 end

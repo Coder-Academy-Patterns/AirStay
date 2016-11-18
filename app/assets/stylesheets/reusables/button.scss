@@ -6,7 +6,6 @@
 }
 
 @mixin button($primary: false, $outline: false, $light: false, $full-width: false, $reduce-right: false) {
-  display: inline-block;
   font-size: 1rem;
 
   padding: 0 ($line-height * 0.444rem);
@@ -52,6 +51,9 @@
   @if $full-width {
     display: block;
     text-align: center;
+  }
+  @else {
+    display: inline-block;
   }
 
   border-radius: 0.5rem * $line-height;

@@ -1,49 +1,24 @@
 <% home_icon = render 'shared/fa', id: 'home' %>
 
-<p id="notice"><%= notice %></p>
+<header>
+  <h1>
+  <% if @regions.nil? %>
+    🏡 Listings
+  <% elsif @regions.count == 1 %>
+    <% region = @regions.first %>
+    🏡 <%= region.country.emoji_flag %> <%= region.address %>
+  <% elsif @country.present? %>
+    🏡 <%= @country.emoji_flag %> <%= @country.name %>
+  <% else %>
+    🏡 in <%= pluralize(@regions.count, 'region') %>
+  <% end %>
+  </h1>
+</header>
 
-<h1>
-<% if @regions.nil? %>
-  🏡 Listings
-<% elsif @regions.count == 1 %>
-  <% region = @regions.first %>
-  🏡 <%= region.country.emoji_flag %> <%= region.address %>
-<% elsif @country.present? %>
-  🏡 <%= @country.emoji_flag %> <%= @country.name %>
-<% else %>
-  🏡 in <%= pluralize(@regions.count, 'region') %>
-<% end %>
-</h1>
+<section class="listings">
+  <%= render @listings %>
+</section>
 
-<table>
-  <thead>
-    <tr>
-      <th>Host</th>
-      <th>Address</th>
-      <th>Lat</th>
-      <th>Lng</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @listings.each do |listing| %>
-      <% host = listing.host %>
-      <tr>
-        <td>
-          <% if host.profile.present? %>
-            <%= link_to(listings_path(params: { host: host })) do %>
-              <%= render host.profile, locals: { small: true } %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><%= link_to listing.address, listing %></td>
-        <td><%= listing.lat %></td>
-        <td><%= listing.lng %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Listing', new_listing_path %>
+<nav>
+  <%= link_to 'New Listing', new_listing_path %>
+</nav>
