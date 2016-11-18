@@ -1,13 +1,6 @@
 <article>
-  <p>
-    <strong>Host:</strong>
-    <% host = @listing.host %>
-    <% if host.profile.present? %>
-        <%= link_to(listings_path(params: { host: host })) do %>
-          <%= render host.profile, locals: { small: true } %>
-        <% end %>
-    <% end %>
-  </p>
+  <figure>
+  </figure>
 
   <p>
     <strong>Address:</strong>
@@ -24,12 +17,19 @@
     <%= @listing.lng %>
   </p>
 
-  <div>
+  <figure>
     <%= render partial: 'map_embed', locals: { lat: @listing.lat, lng: @listing.lng } %>
-  </div>
+  </figure>
+
+  <% host_profile = @listing.host.profile %>
+  <% if host_profile %>
+    <aside>
+      <h2>Hosted by <%= link_to host_profile.first_name, host_profile %></h2>
+      <%= render host_profile, locals: { small: true } %>
+    </aside>
+  <% end %>
 
   <nav>
-    <%= link_to 'Edit', edit_listing_path(@listing) %> |
-    <%= link_to 'Back', listings_path %>
+    <%= link_to_if current_user == @listing.host, 'Edit', edit_listing_path(@listing) %>
   </nav>
 </article>

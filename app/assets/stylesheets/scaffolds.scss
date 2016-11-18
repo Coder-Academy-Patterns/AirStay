@@ -28,7 +28,8 @@ main {
   }
   section,
   article,
-  nav {
+  nav,
+  aside {
     margin-bottom: line-height-rem(2);
   }
 }
