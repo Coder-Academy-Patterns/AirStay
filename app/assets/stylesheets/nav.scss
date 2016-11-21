@@ -7,7 +7,7 @@ nav {
   }
 
   > a {
-    @include button($outline: true);
+    @include button($light: true);
   }
 
   > h2 {
