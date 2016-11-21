@@ -7,7 +7,12 @@
     </figure>
     <figcaption>
       <strong>
-        PRICE
+        <% case fee = listing.nightly_fee_for_earliest_available_date %>
+        <% when Money %>
+          <%= humanized_money_with_symbol fee %>
+        <% else %>
+          <%= 'Out' %>
+        <% end %>
       </strong>
       <span><%= listing.city_name %></span>
     </figcaption>

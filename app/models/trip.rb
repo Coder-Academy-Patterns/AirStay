@@ -48,58 +48,7 @@ class Trip
 end
 
 class Trip
-  class Cost
-    attr_reader :fee_to_night_counts  
-
-    def initialize(check_in_date, check_out_date)
-      @service_fee_cents = Listing.service_fee_cents
-      @nights = []
-      @fee_to_night_counts = Hash.new(0)
-
-      check_in_date.step(check_out_date - 1) do |date|
-        provision = ListingProvision.for_date(date)
-        @cleaning_fee_cents = provision.cleaning_fee_cents if date == check_in_date  
-        @nights << provision.nightly_fee_cents
-        @fee_to_night_counts[provision.nightly_fee_cents] += 1 
-      end
-    end
-
-    def total_nights_cents
-      @fee_to_night_counts.each_pair.map{ |fee, count| fee * count }.reduce(0, :+)
-    end
-
-    def total_cents
-      @service_fee_cents + @cleaning_fee_cents + total_nights_cents
-    end
-
-    def cleaning_fee
-      Money.new(@cleaning_fee_cents)
-    end
-
-    def service_fee
-      Money.new(@service_fee_cents)
-    end
-
-    def total
-      Money.new(total_cents)
-    end
-  end
-
   def cost
-    Cost.new(check_in_date, check_out_date)
+    TripCost.new(listing, check_in_date, check_out_date)
   end
-
-  def total_cents
-    total_cents = Listing.service_fee_cents
-
-    check_in_date.step(check_out_date - 1) do |date|
-      provision = ListingProvision.for_date(date)
-      total_cents += provision.cleaning_fee_cents if date == check_in_date  
-      total_cents += provision.nightly_fee_cents
-    end
-
-    total_cents
-  end
-
-  monetize :total_cents
 end

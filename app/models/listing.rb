@@ -40,11 +40,23 @@ end
 # Trips
 
 class Listing
+  DEFAULT_DAYS_AHEAD = 30
+
   def available_date_ranges(days_ahead, start_date)
     Trip.available_date_ranges_for_listing(self, days_ahead, start_date)
   end
 
-  def earliest_available_date(days_ahead = 30)
+  def earliest_available_date(days_ahead = DEFAULT_DAYS_AHEAD)
     @earliest_date_available ||= Trip.earliest_available_date_for_listing(self, days_ahead, Date.today)
+  end
+
+  def cost_for_earliest_available_date(days_ahead = DEFAULT_DAYS_AHEAD)
+    date = earliest_available_date(days_ahead)
+    return nil unless date
+    TripCost.new(self, date, date + 1)
+  end
+
+  def nightly_fee_for_earliest_available_date(days_ahead = DEFAULT_DAYS_AHEAD)
+    cost_for_earliest_available_date(days_ahead).try{ |cost| cost.night_fees.first }
   end
 end
