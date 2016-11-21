@@ -19,12 +19,8 @@ body {
 }
 
 main {
-  > section,
-  > header,
-  > article,
-  > nav {
-    max-width: $measure;
-    margin: auto;
+  > * {
+    @include inner-block;
   }
 
   header {
@@ -92,6 +88,15 @@ td {
 }
 
 
+#flash {
+  background-color: white;
+
+  > * {
+    @include inner-block;
+
+    padding: line-height-rem(1) 0;
+  }
+}
 #flash-alert {
   color: red;
 }

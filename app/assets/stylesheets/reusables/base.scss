@@ -8,3 +8,9 @@ $key-color: #FFC36E;
 @function line-height-rem($multiplier) {
   @return $line-height * 1rem * $multiplier;
 }
+
+@mixin inner-block() {
+  display: block;
+  max-width: $measure;
+  margin: auto;
+}
