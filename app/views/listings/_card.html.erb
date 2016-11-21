@@ -1,8 +1,8 @@
-<article class="listing">
+<article class="listing is-card">
   <%= link_to listing, class: 'listing_primary-link' do %>
-    <figure class="listing_figure">
-      <%= image_tag "https://source.unsplash.com/800x600?#{ CGI.escape(listing.city_name) }",
-        alt: listing.city_name, class: 'listing_image'
+    <figure class="listing_thumbnail">
+      <%= image_tag unsplash_image_url(listing.city_name, width: 800, height: 600),
+        alt: listing.city_name, class: 'listing_thumbnail_image'
       %>
     </figure>
     <figcaption>

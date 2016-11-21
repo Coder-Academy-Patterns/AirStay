@@ -11,7 +11,11 @@ html {
   font-size: 18px;
 	font-size: calc(112.5% + 2 * (100vw - 600px) / 400);
   line-height: $line-height;
-  margin: 1rem;
+  margin: 0;
+}
+
+body {
+  margin: 0;
 }
 
 main {

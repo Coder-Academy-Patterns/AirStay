@@ -1,4 +1,5 @@
 @import "reusables/card";
+@import "reusables/flexbox";
 
 $listing-gutter: line-height-rem(0.25);
 
@@ -10,11 +11,13 @@ $listing-gutter: line-height-rem(0.25);
 }
 
 .listing {
-  flex-basis: ($measure * 0.5);
-  max-width: ($measure * 0.5);
-  flex-shrink: 0;
-  margin: 0;
-  padding: $listing-gutter;
+  &.is-card {
+    flex-basis: ($measure * 0.5);
+    max-width: ($measure * 0.5);
+    flex-shrink: 0;
+    margin: 0;
+    padding: $listing-gutter;
+  }
 
   &_primary-link {
      @include card;
@@ -25,15 +28,37 @@ $listing-gutter: line-height-rem(0.25);
     opacity: 0.85;
   }
 
-  &_figure {
+  &_thumbnail {
     margin: 0;
     margin-bottom: line-height-rem(0.333);
   }
 
-  &_image {
+  &_thumbnail_image {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  &_hero {
+    margin: 0;
+    margin-bottom: line-height-rem(0.333);
+  }
+
+  &_hero_image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &_title {
+    text-align: center;
+    margin-bottom: line-height-rem(0.5);
+  }
+
+  &_provision-overview {
+    @include flex-row($center: true, $gutter: line-height-rem(1));
+    margin-bottom: line-height-rem(1);
+    font-size: 1.5rem;
   }
 
   &_book {

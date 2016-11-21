@@ -12,7 +12,11 @@
     }
   }
 
-  h3 {
-    margin: 0; 
+  &_prices {
+    margin-top: line-height-rem(0.5);
+
+    h3 {
+      margin-bottom: line-height-rem(0.5);
+    } 
   }
 }

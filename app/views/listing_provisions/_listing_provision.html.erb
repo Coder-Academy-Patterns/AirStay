@@ -1,9 +1,17 @@
 <div class="listing-provision">
   <div class="listing-provision_details">
-    <div class="listing-provision_details_guests-max">👨‍👩‍👧‍👦 <%= pluralize(listing_provision.guests_max, 'guest') %></div>
-    <div class="listing-provision_details_bedroom-count">🚪<%= pluralize(listing_provision.bedroom_count, 'bedroom') %></div>
-    <div class="listing-provision_details_bed-count">🛌<%= pluralize(listing_provision.bed_count, 'bed') %></div>
-    <div class="listing-provision_details_nights-min">🌚<%= pluralize(listing_provision.nights_min, 'minimum night') %></div>
+    <div class="listing-provision_details_guests-max">
+      Guests: <strong><%= listing_provision.guests_max %></strong>
+    </div>
+    <div class="listing-provision_details_bedroom-count">
+      Bedrooms: <strong><%= listing_provision.bedroom_count %></strong>
+    </div>
+    <div class="listing-provision_details_bed-count">
+      Beds: <strong><%= listing_provision.bed_count %></strong>
+    </div>
+    <div class="listing-provision_details_nights-min">
+      Minimum Nights: <strong><%= listing_provision.nights_min %></strong>
+    </div>
   </div>
 
   <div class="listing-provision_prices">

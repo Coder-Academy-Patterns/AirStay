@@ -1,18 +1,35 @@
-<article>
-  <figure>
+<div>
+  <figure class="listing_hero">
+    <%= image_tag unsplash_image_url(@listing.city_name, width: 1400, height: 600),
+      alt: @listing.city_name, class: 'listing_hero_image'
+    %>
   </figure>
-  <figcaption>
-    <h1><%= @listing.address %></h1>
-  </figcaption>
+</div>
 
-  <% if @earliest_available_date %>
-    <p>💁 Available on <%= @earliest_available_date.to_formatted_s(:long) %></p>
-  <% end %>
+<article class="listing">
+  <h1 class="listing_title"><%= @listing.address %></h1>
+
+  <div class="listing_provision-overview">
+    <div class="listing_provision-overview_guest-max">
+      <%= adult_faces_emoji(@provision.guests_max) %>
+    </div>
+    <div class="listing_provision-overview_bedroom-count">
+      <%= bedroom_emoji(@provision.bedroom_count) %>
+    </div>
+    <div class="listing_provision-overview_bed-count">
+      <%= bed_emoji(@provision.bed_count) %>
+    </div>
+  </div>
 
   <% if @new_trip %>
     <section class="listing_book">
       <%= render(partial: 'trips/form', locals: { trip: @new_trip, guests_max: @provision.guests_max }) %>
     </section>
+  <% elsif !user_signed_in? %>
+    <nav class="nav is-centered">
+      <%= link_to 'Sign In', new_user_session_path, class: 'is-primary' %>
+      <%= link_to 'Sign Up', new_user_registration_path %>
+    </nav>
   <% end %>
 
   <% if @provision %>

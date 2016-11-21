@@ -1,8 +1,17 @@
+@import "reusables/flexbox";
 @import "reusables/button";
 
 nav {
+  &.is-centered {
+    @include flex-row($center: true, $gutter: line-height-rem(1));
+  }
+
   > a {
     @include button($outline: true);
+
+    &.is-primary {
+      @include button($primary: true);
+    }
   }
 
   > h2 {
