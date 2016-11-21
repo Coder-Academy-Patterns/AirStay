@@ -79,10 +79,8 @@ td {
   padding: 0.2rem;
 }
 
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
+.field {
+  margin-bottom: line-height-rem(0.5);
 }
 
 

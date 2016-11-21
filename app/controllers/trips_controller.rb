@@ -23,10 +23,11 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.guest = current_user
+    @trip.stripe_charge_id = params[:stripeToken]
 
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to @trip, notice: 'Woo hoo! You’re booked.' }
         format.json { render :show, status: :created, location: @trip }
       else
         format.html { redirect_to :back, alert: 'These dates are not available' }

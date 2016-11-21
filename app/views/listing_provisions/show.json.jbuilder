@@ -1,0 +1,1 @@
+json.partial! "listing_provisions/listing_provision", listing_provision: @listing_provision

@@ -1,3 +1,6 @@
+<% cost = trip.cost %>
+<% start_year = Date.today.year %>
+
 <%= form_for(trip) do |f| %>
   <% if trip.errors.any? %>
     <div id="error_explanation">
@@ -11,19 +14,52 @@
     </div>
   <% end %>
 
+  <h3><%= humanized_money_with_symbol cost.total %> Total</h3>
+
   <%= f.hidden_field :listing_id %>
 
   <div class="field">
     <%= f.label :check_in_date, 'Check In' %>
-    <%= f.date_select :check_in_date %>
+    <%= f.date_select :check_in_date, start_year: start_year %>
   </div>
 
   <div class="field">
     <%= f.label :check_out_date, 'Check Out' %>
-    <%= f.date_select :check_out_date %>
+    <%= f.date_select :check_out_date, start_year: start_year %>
   </div>
 
+  <div class="field">
+    <%= f.label :guest_count, 'Guests' %>
+    <%= f.select :guest_count, (1..guests_max).map{ |n| [ n.to_s, n ] } %>
+  </div>
+
+  <dl class="trip_costs">
+    <% cost.fee_to_night_counts.each do |fee_cents, night_count| %>
+      <dt><%= humanized_money_with_symbol Money.new(fee_cents) %> × <%= pluralize(night_count, 'night') %></dt>
+      <dd><%= humanized_money_with_symbol Money.new(fee_cents * night_count) %></dd>
+    <% end %>
+
+    <dt>Cleaning fee</dt>
+    <dd><%= humanized_money_with_symbol cost.cleaning_fee %></dd>
+
+    <dt>Service fee</dt>
+    <dd><%= humanized_money_with_symbol cost.service_fee %></dd>
+
+    <dt>Total</dt>
+    <dd><%= humanized_money_with_symbol cost.total %></dd>
+  </dl>
+
   <div class="actions">
-    <%= f.submit 'Book' %>
+    <%#= f.submit 'Book' %>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-name="AirStay"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="Book for <%= pluralize(trip.nights_count, 'night') %>"
+      data-amount="<%= cost.total_cents %>"
+      data-currency="<%= Money.default_currency %>"
+      data-locale="auto"
+      data-email="<%= current_user.email %>"
+    >
+    </script>
   </div>
 <% end %>

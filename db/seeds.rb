@@ -42,9 +42,19 @@ Region.create!([
   { name: 'Auckland', country_code: 'nz' },
   { name: 'Queenstown', country_code: 'nz' }
 ]) do |region|
-  Listing.create!(
+  listing = Listing.create!(
     host: host_user,
     region: region,
     address: region.address
+  )
+  guest_max_count = Random.rand(1..4)
+  listing_provision = ListingProvision.create!(
+    listing: listing,
+    start_date: Date.new(2001),
+    guests_max: guest_max_count,
+    bed_count: Random.rand(1..guest_max_count),
+    nights_min: Random.rand(1..3),
+    nightly_fee_cents: Random.rand(60_00..200_00).round(-2),
+    cleaning_fee_cents: Random.rand(20_00..50_00).round(-2)
   )
 end

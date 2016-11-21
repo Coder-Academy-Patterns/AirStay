@@ -19,7 +19,25 @@ class Listing < ApplicationRecord
     # Remove city and country
     address.try { |address| address.split(',').reverse.drop(2).map(&:strip).reverse.join(', ') }
   end
+
+  def self.service_fee_cents
+    10_00
+  end
 end
+
+# Provisions
+
+class Listing
+  def provisions
+    ListingProvision.by_listing(self)
+  end
+
+  def provision_for_date(date)
+    provisions.starting_from(date).limit(1).first
+  end
+end
+
+# Trips
 
 class Listing
   def available_date_ranges(days_ahead, start_date)

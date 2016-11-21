@@ -1,3 +1,43 @@
-// Place all the styles related to the Trips controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "reusables/base";
+@import "reusables/flexbox";
+
+.new_trip {
+  @include flex-row;
+
+  h3 {
+    flex: 1 100%;
+    text-align: center;
+  }
+
+  .field {
+    flex: 1 50%;
+  }
+
+  .trip_costs {
+    flex: 1 100%;
+    margin-bottom: line-height-rem(0.5);
+  }
+
+  .actions {
+    flex: 1 100%;
+
+    input {
+      display: block;
+      width: 100%;
+      text-align: center;
+      line-height: line-height-rem(1.5);
+    }
+  }
+}
+
+.trip_costs {
+  @include flex-row;
+
+  dt, dd {
+    flex: 50%;
+    margin: 0;
+  }
+  dd {
+    text-align: right;
+  }
+}

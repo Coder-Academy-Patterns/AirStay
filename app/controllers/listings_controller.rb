@@ -33,13 +33,21 @@ class ListingsController < ApplicationController
   def show
     @earliest_available_date = @listing.earliest_available_date
 
-    if user_signed_in? and @earliest_available_date
-      @new_trip = Trip.new(
-        guest: current_user,
-        listing: @listing,
-        check_in_date: @earliest_available_date,
-        check_out_date: @earliest_available_date + 1
-      )
+    @service_fee_cents = Listing.service_fee_cents
+
+    if @earliest_available_date
+      @provision = @listing.provision_for_date(@earliest_available_date)
+
+      if user_signed_in?
+        @new_trip = Trip.new(
+          guest: current_user,
+          listing: @listing,
+          check_in_date: @earliest_available_date,
+          check_out_date: @earliest_available_date + @provision.nights_min
+        )
+
+        @nights_count = @new_trip.check_out_date - @new_trip.check_in_date 
+      end
     end
   end
 

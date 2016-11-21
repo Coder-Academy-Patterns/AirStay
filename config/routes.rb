@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :listings
+  resources :listings do
+    resources :listing_provisions, controller: :listing_provisions, path: 'provisions'
+  end
   resources :trips, except: [:new]
+  
   root 'home#index'
-
   get 'explore' => 'explore#index'
   post 'explore' => 'explore#index'
 

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Listing:</strong>
+  <%= @listing_provision.listing %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @listing_provision.start_date %>
+</p>
+
+<p>
+  <strong>Guest max count:</strong>
+  <%= @listing_provision.guest_max_count %>
+</p>
+
+<p>
+  <strong>Bed count:</strong>
+  <%= @listing_provision.bed_count %>
+</p>
+
+<p>
+  <strong>Minimum nights:</strong>
+  <%= @listing_provision.minimum_nights %>
+</p>
+
+<p>
+  <strong>Nightly fee cents:</strong>
+  <%= @listing_provision.nightly_fee_cents %>
+</p>
+
+<p>
+  <strong>Cleaning fee cents:</strong>
+  <%= @listing_provision.cleaning_fee_cents %>
+</p>
+
+<%= link_to 'Edit', edit_listing_provision_path(@listing_provision) %> |
+<%= link_to 'Back', listing_provisions_path %>

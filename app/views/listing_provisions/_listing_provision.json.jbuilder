@@ -1,0 +1,2 @@
+json.extract! listing_provision, :id, :listing_id, :start_date, :guest_max_count, :bed_count, :minimum_nights, :nightly_fee_cents, :cleaning_fee_cents, :created_at, :updated_at
+json.url listing_provision_url(listing_provision, format: :json)

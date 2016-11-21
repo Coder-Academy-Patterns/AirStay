@@ -1,6 +1,9 @@
 <article>
   <figure>
   </figure>
+  <figcaption>
+    <h1><%= @listing.address %></h1>
+  </figcaption>
 
   <% if @earliest_available_date %>
     <p>💁 Available on <%= @earliest_available_date.to_formatted_s(:long) %></p>
@@ -8,24 +11,15 @@
 
   <% if @new_trip %>
     <section class="listing_book">
-      <%= render(partial: 'trips/form', locals: { trip: @new_trip }) %>
+      <%= render(partial: 'trips/form', locals: { trip: @new_trip, guests_max: @provision.guests_max }) %>
     </section>
   <% end %>
 
-  <p>
-    <strong>Address:</strong>
-    <%= @listing.address %>
-  </p>
-
-  <p>
-    <strong>Lat:</strong>
-    <%= @listing.lat %>
-  </p>
-
-  <p>
-    <strong>Lng:</strong>
-    <%= @listing.lng %>
-  </p>
+  <% if @provision %>
+    <aside>
+      <%= render @provision %>
+    </aside>
+  <% end %>
 
   <figure>
     <%= render partial: 'map_embed', locals: { lat: @listing.lat, lng: @listing.lng } %>
@@ -39,7 +33,10 @@
     </aside>
   <% end %>
 
-  <nav>
-    <%= link_to_if current_user == @listing.host, 'Edit', edit_listing_path(@listing) %>
-  </nav>
+  <% if current_user == @listing.host %>
+    <nav>
+      <%= link_to 'Edit', edit_listing_path(@listing) %>
+      <%= link_to 'Edit Provisions', edit_listing_listing_provisions_path(@listing) %>
+    </nav>
+  <% end %>
 </article>

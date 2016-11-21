@@ -1,0 +1,13 @@
+<div class="listing-provision">
+  <div class="listing-provision_details">
+    <div class="listing-provision_details_guests-max">👨‍👩‍👧‍👦 <%= pluralize(listing_provision.guests_max, 'guest') %></div>
+    <div class="listing-provision_details_bedroom-count">🚪<%= pluralize(listing_provision.bedroom_count, 'bedroom') %></div>
+    <div class="listing-provision_details_bed-count">🛌<%= pluralize(listing_provision.bed_count, 'bed') %></div>
+    <div class="listing-provision_details_nights-min">🌚<%= pluralize(listing_provision.nights_min, 'minimum night') %></div>
+  </div>
+
+  <div class="listing-provision_prices">
+    <h3>Prices</h3>
+    <p>Cleaning fee: <%= humanized_money_with_symbol listing_provision.cleaning_fee %></p>
+  </div>
+</div>
