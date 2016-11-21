@@ -19,7 +19,7 @@ body {
 }
 
 main {
-  > * {
+  > *:not(.full-width) {
     @include inner-block;
   }
 
