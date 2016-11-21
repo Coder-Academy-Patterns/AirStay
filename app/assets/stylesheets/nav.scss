@@ -8,10 +8,6 @@ nav {
 
   > a {
     @include button($outline: true);
-
-    &.is-primary {
-      @include button($primary: true);
-    }
   }
 
   > h2 {
@@ -24,6 +20,22 @@ nav {
 
   > h3 {
     line-height: 3 * $line-height;
+
+    > a {
+      @include button($light: true, $full-width: true);
+    }
+  }
+
+  > h5 {
+    line-height: line-height-rem(1.5);
+
+    > a {
+      @include button($primary: true, $full-width: true);
+    }
+  }
+
+  > h6 {
+    line-height: line-height-rem(1.5);
 
     > a {
       @include button($light: true, $full-width: true);

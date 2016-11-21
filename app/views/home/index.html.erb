@@ -13,16 +13,16 @@
   <% end %>
 </header>
 
-<nav>
-  <h2>
-    <%= link_to explore_path do %>
+<nav class="home-nav">
+  <h2 class="home-nav_explore">
+    <%= link_to explore_path, class: 'home-nav_explore_link' do %>
       <i class="fa fa-compass fa-spin" aria-hidden="true"></i> Explore
     <% end %>
   </h2>
   <% if user_signed_in? %>
-    <h3>
-      <%= link_to new_listing_path do %>
-        <i class="fa fa-star" aria-hidden="true"></i> Become a Host
+    <h3 class="home-nav_become-host">
+      <%= link_to new_listing_path, class: 'home-nav_become-host_link' do %>
+        <i class="fa fa-star fa-spin" aria-hidden="true"></i> Become a Host
       <% end %>
     </h3>
   <% end %>

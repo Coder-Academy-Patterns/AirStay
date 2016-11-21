@@ -1,3 +1,19 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.home-nav {
+  > * {
+    > a {
+      position: relative;
+      overflow: hidden;
+      font-size: 2rem;
+      line-height: 2;
+      text-align: right;
+      padding-right: 1.5em;
+
+      .fa {
+        position: absolute;
+        left: 13%;
+        font-size: 6rem;
+        margin-top: -1rem;
+      }
+    }
+  }
+}

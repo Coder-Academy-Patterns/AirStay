@@ -27,8 +27,8 @@
     </section>
   <% elsif !user_signed_in? %>
     <nav class="nav is-centered">
-      <%= link_to 'Sign In', new_user_session_path, class: 'is-primary' %>
-      <%= link_to 'Sign Up', new_user_registration_path %>
+      <h5><%= link_to 'Sign In', new_user_session_path %></h5>
+      <h6><%= link_to 'Sign Up', new_user_registration_path %></h6>
     </nav>
   <% end %>
 

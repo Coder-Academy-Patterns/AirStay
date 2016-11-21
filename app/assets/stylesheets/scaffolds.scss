@@ -29,6 +29,10 @@ main {
 
   header {
     margin-bottom: line-height-rem(1);
+
+    &:first-child {
+      margin-top: line-height-rem(1.5);
+    }
   }
   section,
   article,
