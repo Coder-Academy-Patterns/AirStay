@@ -11,7 +11,7 @@ nav {
   }
 
   > h2 {
-    line-height: 3 * $line-height;
+    line-height: 2 * $line-height;
 
     > a {
       @include button($primary: true, $full-width: true);
@@ -19,7 +19,7 @@ nav {
   }
 
   > h3 {
-    line-height: 3 * $line-height;
+    line-height: 2 * $line-height;
 
     > a {
       @include button($light: true, $full-width: true);

@@ -1,18 +1,24 @@
 .home-nav {
   > * {
     > a {
-      position: relative;
-      overflow: hidden;
-      font-size: 2rem;
-      line-height: 2;
-      text-align: right;
-      padding-right: 1.5em;
+      font-size: 1.5rem;
+    }
 
-      .fa {
-        position: absolute;
-        left: 13%;
-        font-size: 6rem;
-        margin-top: -1rem;
+    @media screen and (min-width: 800px) {
+      > a {
+        position: relative;
+        overflow: hidden;
+        font-size: 2rem;
+        line-height: 2;
+        text-align: right;
+        padding-right: 1.5em;
+
+        .fa {
+          position: absolute;
+          left: 13%;
+          font-size: 6rem;
+          margin-top: -1rem;
+        }
       }
     }
   }
