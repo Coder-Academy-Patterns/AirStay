@@ -22,8 +22,8 @@
   </div>
 
   <% if @new_trip %>
-    <section class="listing_book">
-      <%= render(partial: 'trips/form', locals: { trip: @new_trip, guests_max: @provision.guests_max }) %>
+    <section class="listing_book" id="listing_book">
+      <%= render partial: 'trips/form', locals: { trip: @new_trip, guests_max: @provision.guests_max } %>
     </section>
   <% elsif !user_signed_in? %>
     <nav class="nav is-centered">

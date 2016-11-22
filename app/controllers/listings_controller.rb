@@ -39,15 +39,25 @@ class ListingsController < ApplicationController
       @provision = @listing.provision_for_date(@earliest_available_date)
 
       if user_signed_in?
+        check_in_date = params[:check_in].try{ |s| Date.iso8601(s) } || @earliest_available_date
+        check_out_date = params[:check_out].try{ |s| Date.iso8601(s) } || (@earliest_available_date + @provision.nights_min)
+        guest_count = params.fetch(:guest, 1)
+
         @new_trip = Trip.new(
           guest: current_user,
           listing: @listing,
-          check_in_date: @earliest_available_date,
-          check_out_date: @earliest_available_date + @provision.nights_min
+          check_in_date: check_in_date,
+          check_out_date: check_out_date,
+          guest_count: guest_count
         )
 
         @nights_count = @new_trip.check_out_date - @new_trip.check_in_date 
       end
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
