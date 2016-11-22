@@ -5,7 +5,7 @@ class ListingProvisionsController < ApplicationController
   # GET /listing_provisions
   # GET /listing_provisions.json
   def index
-    @listing_provisions = ListingProvision.where(listing: @listing)
+    @listing_provisions = ListingProvision.where(listing: @listing).oldest_to_youngest
   end
 
   # GET /listing_provisions/1
@@ -74,6 +74,6 @@ class ListingProvisionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_provision_params
-      params.require(:listing_provision).permit(:listing_id, :start_date, :guest_max_count, :bed_count, :minimum_nights, :nightly_fee_cents, :cleaning_fee_cents)
+      params.require(:listing_provision).permit(:listing_id, :start_date, :guests_max, :bedroom_count, :bed_count, :nights_min, :nightly_fee_cents, :cleaning_fee_cents)
     end
 end
