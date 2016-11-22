@@ -1,7 +1,5 @@
 $(document).on('change', '#new_trip select', _.debounce(function(event) {
   var form = event.target.form;
-  console.log($(form).serialize())
-  
   var elements = form.elements;
 
   var check_in_date = [
@@ -23,9 +21,7 @@ $(document).on('change', '#new_trip select', _.debounce(function(event) {
     check_out: check_out_date,
     guests: guest_count 
   })
-  console.log(query)
 
-  //Turbolinks.visit(location.pathname + '?' + query + '#' + form.id, { action: 'replace' });
   var path = location.pathname + '?' + query;
   $.get({
     url: path,
@@ -34,6 +30,4 @@ $(document).on('change', '#new_trip select', _.debounce(function(event) {
   .then(function() {
     history.replaceState({}, '', path)
   });
-
-  //$(form).trigger('submit');
 }, 200));
