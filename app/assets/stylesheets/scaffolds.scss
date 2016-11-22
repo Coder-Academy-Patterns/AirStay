@@ -111,27 +111,19 @@ td {
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+  margin-bottom: line-height-rem(1);
+  background-color: white;
 
   h2 {
-    text-align: left;
+    margin: 0;
+    text-align: center;
+    font-size: 1rem;
     font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0;
-    background-color: #c00;
-    color: #fff;
+    color: #c00;
   }
 
   ul li {
-    font-size: 12px;
-    list-style: square;
+    font-style: italic;
   }
 }
 

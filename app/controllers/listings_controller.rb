@@ -50,6 +50,7 @@ class ListingsController < ApplicationController
           check_out_date: check_out_date,
           guest_count: guest_count
         )
+        @new_trip.validate(:display)
 
         @nights_count = @new_trip.check_out_date - @new_trip.check_in_date 
       end
