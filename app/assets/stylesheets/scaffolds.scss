@@ -23,7 +23,7 @@ main {
     @include inner-block;
   }
 
-  header {
+  > header {
     margin-bottom: line-height-rem(1);
 
     &:first-child {

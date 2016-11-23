@@ -10,7 +10,7 @@ $key-color: #FFC36E;
 }
 
 @mixin inner-block() {
-  display: block;
   max-width: $measure;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }

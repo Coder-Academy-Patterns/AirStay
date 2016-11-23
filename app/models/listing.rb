@@ -60,3 +60,8 @@ class Listing
     cost_for_earliest_available_date(days_ahead).try{ |cost| cost.night_fees.first }
   end
 end
+
+class Listing
+  has_many :trips
+  has_many :reviews
+end

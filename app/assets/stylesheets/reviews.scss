@@ -1,0 +1,17 @@
+@import './reusables/base';
+
+.review {
+  &_header {
+    margin-bottom: line-height-rem(0.5);
+  }
+
+  &_date {
+    font-style: italic;
+  }
+  &_rating {
+
+  }
+  &_date + &_rating {
+    margin-left: 1rem;
+  }
+}

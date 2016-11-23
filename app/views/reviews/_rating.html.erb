@@ -1,0 +1,10 @@
+<%= content_tag :span, '', class: 'review_rating' do %>
+  <% 5.times.each do |n| %>
+    <% case [rating - n, 0].max %>
+    <% when 0 %>
+    <%= font_awesome('star-o') %>
+    <% else %>
+    <%= font_awesome('star') %>
+    <% end %>
+  <% end %>
+<% end %>
