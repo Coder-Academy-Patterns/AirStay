@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121010551) do
+ActiveRecord::Schema.define(version: 20161123013438) do
 
   create_table "listing_provisions", force: :cascade do |t|
     t.integer  "listing_id",                     null: false
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 20161121010551) do
     t.index ["address"], name: "index_listings_on_address", unique: true
     t.index ["host_id"], name: "index_listings_on_host_id"
     t.index ["region_id"], name: "index_listings_on_region_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "guest_id"
+    t.integer  "listing_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guest_id"], name: "index_messages_on_guest_id"
+    t.index ["listing_id"], name: "index_messages_on_listing_id"
   end
 
   create_table "profiles", force: :cascade do |t|

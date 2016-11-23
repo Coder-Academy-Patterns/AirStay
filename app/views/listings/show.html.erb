@@ -47,6 +47,12 @@
     <aside>
       <h2>Hosted by <%= link_to host_profile.first_name, host_profile %></h2>
       <%= render host_profile, locals: { small: true } %>
+
+      <nav>
+        <h5>
+          <%= link_to 'Contact host', listing_messages_path(@listing)%>
+        </h5>
+      </nav>
     </aside>
   <% end %>
 
