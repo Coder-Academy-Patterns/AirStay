@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all.order(created_at: :asc)
+    @messages = Message.where(listing: @listing).order(created_at: :asc)
     @new_message = Message.new
   end
 
