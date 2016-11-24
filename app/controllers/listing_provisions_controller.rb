@@ -29,8 +29,8 @@ class ListingProvisionsController < ApplicationController
 
     respond_to do |format|
       if @listing_provision.save
-        format.html { redirect_to @listing_provision, notice: 'Listing provision was successfully created.' }
-        format.json { render :show, status: :created, location: @listing_provision }
+        format.html { redirect_to [@listing, @listing_provision], notice: 'Listing provision was successfully created.' }
+        format.json { render :show, status: :created, location: [@listing, @listing_provision] }
       else
         format.html { render :new }
         format.json { render json: @listing_provision.errors, status: :unprocessable_entity }
@@ -43,8 +43,8 @@ class ListingProvisionsController < ApplicationController
   def update
     respond_to do |format|
       if @listing_provision.update(listing_provision_params)
-        format.html { redirect_to @listing_provision, notice: 'Listing provision was successfully updated.' }
-        format.json { render :show, status: :ok, location: @listing_provision }
+        format.html { redirect_to [@listing, @listing_provision], notice: 'Listing provision was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@listing, @listing_provision] }
       else
         format.html { render :edit }
         format.json { render json: @listing_provision.errors, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class ListingProvisionsController < ApplicationController
   def destroy
     @listing_provision.destroy
     respond_to do |format|
-      format.html { redirect_to listing_provisions_url, notice: 'Listing provision was successfully destroyed.' }
+      format.html { redirect_to listing_listing_provisions_url(@listing), notice: 'Listing provision was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

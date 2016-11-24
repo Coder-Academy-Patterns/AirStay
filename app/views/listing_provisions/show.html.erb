@@ -4,8 +4,8 @@
 </p>
 
 <p>
-  <strong>Guest max count:</strong>
-  <%= @listing_provision.guest_max_count %>
+  <strong>Maximum number of guests:</strong>
+  <%= @listing_provision.guests_max %>
 </p>
 
 <p>
@@ -14,8 +14,8 @@
 </p>
 
 <p>
-  <strong>Minimum nights:</strong>
-  <%= @listing_provision.minimum_nights %>
+  <strong>Minimum number of nights:</strong>
+  <%= @listing_provision.nights_min %>
 </p>
 
 <p>
@@ -28,5 +28,5 @@
   <%= @listing_provision.cleaning_fee_cents %>
 </p>
 
-<%= link_to 'Edit', edit_listing_provision_path(@listing_provision) %> |
-<%= link_to 'Back', listing_provisions_path %>
+<%= link_to 'Edit', edit_listing_listing_provision_path(@listing, @listing_provision) %> |
+<%= link_to 'Back', listing_listing_provisions_path(@listing) %>
