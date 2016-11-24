@@ -9,6 +9,6 @@ class CreateTrips < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :trips, [:guest, :listing, :check_in_date]
+    add_index :trips, [:guest_id, :listing_id, :check_in_date]
   end
 end
