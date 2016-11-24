@@ -59,7 +59,7 @@
   <% if current_user == @listing.host %>
     <nav>
       <%= link_to 'Edit', edit_listing_path(@listing) %>
-      <%= link_to 'Edit Provisions', edit_listing_listing_provisions_path(@listing) %>
+      <%= link_to 'Edit Provisions', listing_listing_provisions_path(@listing) %>
     </nav>
   <% end %>
 </article>

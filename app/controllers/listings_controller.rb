@@ -77,14 +77,29 @@ class ListingsController < ApplicationController
     @listing = Listing.new(host: current_user)
 
     address_hash = address_params
-    region = Region.country_code_eq(address_hash[:region_country_code_upper]).name_eq(address_hash[:city_name]).first!
+    region = nil
+    Region.transaction(requires_new: true) do
+      region = Region.country_code_eq(address_hash[:region_country_code_upper]).name_eq(address_hash[:city_name]).first
+      region = Region.create!(country_code: address_hash[:region_country_code_upper], name: address_hash[:city_name]) if region.nil?
+    end
+
     address = region.address(address_hash[:street])
 
     @listing.region = region
     @listing.address = address
 
+    @provision = ListingProvision.new(
+      listing: @listing,
+      start_date: Date.new(2001),
+      guests_max: 1,
+      bed_count: 1,
+      nights_min: 1,
+      nightly_fee_cents: 100,
+      cleaning_fee_cents: 20
+    )
+
     respond_to do |format|
-      if @listing.save
+      if @listing.save and @provision.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
         format.json { render :show, status: :created, location: @listing }
       else
