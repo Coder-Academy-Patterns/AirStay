@@ -1,0 +1,23 @@
+<div class="listing-provision">
+  <div class="listing-provision_details">
+    <div class="listing-provision_details_guests-max">
+      Guests: <strong><%= listing_provision.guests_max %></strong>
+    </div>
+    <div class="listing-provision_details_bedroom-count">
+      Bedrooms: <strong><%= listing_provision.bedroom_count %></strong>
+    </div>
+    <div class="listing-provision_details_bed-count">
+      Beds: <strong><%= listing_provision.bed_count %></strong>
+    </div>
+    <div class="listing-provision_details_nights-min">
+      Minimum Nights: <strong><%= listing_provision.nights_min %></strong>
+    </div>
+  </div>
+
+  <div class="listing-provision_prices">
+    <h3>Prices</h3>
+    <div>
+      Cleaning fee: <strong><%= humanized_money_with_symbol listing_provision.cleaning_fee %></strong>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+@import './reusables/base';
+
+.messages {
+  &_header {
+  }
+}
+
+.message {
+  margin-top: line-height-rem(1);
+  margin-bottom: line-height-rem(1);
+
+  &_content {
+  }
+  &_created-at {
+    font-weight: normal;
+    font-style: italic;
+  }
+}
+
+.new_message {
+  #message_content {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+  }
+}

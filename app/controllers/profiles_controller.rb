@@ -10,6 +10,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+
+    redirect_to root_url, alert: 'You already have a profile' if current_user.profile.present?
   end
 
   # GET /profiles/1/edit
@@ -19,8 +21,11 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
+    user = current_user
+    return redirect_to root_url, alert: 'You already have a profile' if user.profile.present?
+
     @profile = Profile.new(profile_params)
-    @profile.user = current_user
+    @profile.user = user
 
     respond_to do |format|
       if @profile.save

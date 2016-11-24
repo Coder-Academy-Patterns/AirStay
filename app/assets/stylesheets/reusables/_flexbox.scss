@@ -1,0 +1,31 @@
+@import './base';
+
+@mixin flex-container($wrap: true) {
+  display: flex;
+
+  @if $wrap {
+    flex-wrap: wrap;
+  }
+  @else {
+    flex-wrap: nowrap;
+  }
+}
+
+@mixin flex-row($wrap: true, $center: false, $gutter: 0) {
+  @include flex-container($wrap: $wrap);
+  flex-direction: row;
+
+  @if $center {
+    justify-content: center;
+
+    > * {
+      margin-left: $gutter / 2;
+      margin-right: $gutter / 2;
+    }
+  }
+}
+
+@mixin flex-column($wrap: true) {
+  @include flex-container($wrap: $wrap);
+  flex-direction: column;
+}

@@ -1,0 +1,44 @@
+@import "reusables/flexbox";
+@import "reusables/button";
+
+nav {
+  &.is-centered {
+    @include flex-row($center: true, $gutter: line-height-rem(1));
+  }
+
+  > a {
+    @include button($light: true);
+  }
+
+  > h2 {
+    line-height: 2 * $line-height;
+
+    > a {
+      @include button($primary: true, $full-width: true);
+    }
+  }
+
+  > h3 {
+    line-height: 2 * $line-height;
+
+    > a {
+      @include button($light: true, $full-width: true);
+    }
+  }
+
+  > h5 {
+    line-height: line-height-rem(1.5);
+
+    > a {
+      @include button($primary: true, $full-width: true);
+    }
+  }
+
+  > h6 {
+    line-height: line-height-rem(1.5);
+
+    > a {
+      @include button($light: true, $full-width: true);
+    }
+  }
+}

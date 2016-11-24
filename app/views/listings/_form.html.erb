@@ -12,28 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :host_id %>
-    <%= f.text_field :host_id %>
+    <%= f.label 'Country' %>
+    <%= f.collection_select :region_country_code_upper, @countries, :alpha2, :name %>
   </div>
 
   <div class="field">
-    <%= f.label :region_id %>
-    <%= f.text_field :region_id %>
+    <%= f.label 'City' %>
+    <%= f.text_field :city_name %>
   </div>
 
   <div class="field">
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lat %>
-    <%= f.text_field :lat %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lng %>
-    <%= f.text_field :lng %>
+    <%= f.label :street %>
+    <%= f.text_field :street %>
   </div>
 
   <div class="actions">

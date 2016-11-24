@@ -1,0 +1,23 @@
+<article>
+  <%= render @trip.listing %>
+
+  <p>
+    <strong>Check in date:</strong>
+    <%= @trip.check_in_date %>
+  </p>
+
+  <p>
+    <strong>Check out date:</strong>
+    <%= @trip.check_out_date %>
+  </p>
+
+  <p>
+    <strong>Stripe charge:</strong>
+    <%= @trip.stripe_charge_id %>
+  </p>
+
+  <nav>
+    <%= link_to 'Edit', edit_trip_path(@trip) %>
+    <%= link_to 'Back', trips_path %>
+  </nav>
+</article>

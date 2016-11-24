@@ -1,0 +1,52 @@
+<%= form_for([@listing, listing_provision]) do |f| %>
+  <% if listing_provision.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(listing_provision.errors.count, "error") %> prohibited this listing_provision from being saved:</h2>
+
+      <ul>
+      <% listing_provision.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :guests_max %>
+    <%= f.number_field :guests_max %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bedroom_count %>
+    <%= f.number_field :bedroom_count %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bed_count %>
+    <%= f.number_field :bed_count %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nights_min %>
+    <%= f.number_field :nights_min %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nightly_fee_cents %>
+    <%= f.number_field :nightly_fee_cents %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cleaning_fee_cents %>
+    <%= f.number_field :cleaning_fee_cents %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

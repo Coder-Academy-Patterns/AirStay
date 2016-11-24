@@ -1,6 +1,8 @@
 class ListingsController < ApplicationController
-  #before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :require_host_signed_in, only: [:edit, :update, :destroy]
+  before_action :set_countries, only: [:new, :edit]
 
   # GET /listings
   # GET /listings.json
@@ -8,21 +10,56 @@ class ListingsController < ApplicationController
     region_name = params[:region_name]
     country_code = params[:country_code]
     
+    # Filter by region name or country
     if region_name.present? or country_code.present?
-      # Filter by region name or country
-      regions = Region.all
-      regions = regions.where(name: region_name) if region_name.present?
-      regions = regions.where(country_code: country_code) if country_code.present?
-      @listings = Listing.where(region: regions)
+      @regions = Region.all
+      @regions = @regions.name_eq(region_name) if region_name.present?
+      @regions = @regions.country_code_eq(country_code) if country_code.present?
+      @listings = Listing.where(region: @regions)
+
+      @country = ISO3166::Country.new(country_code) if country_code.present?
     else
       # Show all listings
       @listings = Listing.all
     end
+
+    # Filter by host
+    host_id = params[:host]
+    @listings = @listings.where(host_id: host_id) if host_id.present?
   end
 
   # GET /listings/1
   # GET /listings/1.json
   def show
+    @earliest_available_date = @listing.earliest_available_date
+
+    @service_fee_cents = Listing.service_fee_cents
+
+    if @earliest_available_date
+      @provision = @listing.provision_for_date(@earliest_available_date)
+
+      if user_signed_in?
+        check_in_date = params[:check_in].try{ |s| Date.iso8601(s) } || @earliest_available_date
+        check_out_date = params[:check_out].try{ |s| Date.iso8601(s) } || (@earliest_available_date + @provision.nights_min)
+        guest_count = params.fetch(:guest, 1)
+
+        @new_trip = Trip.new(
+          guest: current_user,
+          listing: @listing,
+          check_in_date: check_in_date,
+          check_out_date: check_out_date,
+          guest_count: guest_count
+        )
+        @new_trip.validate(:display)
+
+        @nights_count = @new_trip.check_out_date - @new_trip.check_in_date 
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /listings/new
@@ -37,7 +74,14 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(listing_params)
+    @listing = Listing.new(host: current_user)
+
+    address_hash = address_params
+    region = Region.country_code_eq(address_hash[:region_country_code_upper]).name_eq(address_hash[:city_name]).first!
+    address = region.address(address_hash[:street])
+
+    @listing.region = region
+    @listing.address = address
 
     respond_to do |format|
       if @listing.save
@@ -80,8 +124,16 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
+    def set_countries
+      @countries = ISO3166::Country.codes.map{ |alpha2| ISO3166::Country.new(alpha2) }
+    end
+
+    def require_host_signed_in
+      redirect_to listings_url unless @listing.host == current_user
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
-    def listing_params
-      params.require(:listing).permit(:host_id, :region_id, :address, :lat, :lng)
+    def address_params
+      params.require(:listing).permit(:region_country_code_upper, :city_name, :street)
     end
 end

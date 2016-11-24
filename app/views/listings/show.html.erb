@@ -1,28 +1,65 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Host:</strong>
-  <%= @listing.host.email %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @listing.address %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @listing.lat %>
-</p>
-
-<p>
-  <strong>Lng:</strong>
-  <%= @listing.lng %>
-</p>
-
-<div>
-  <%= render partial: 'map_embed', locals: { lat: @listing.lat, lng: @listing.lng } %>
+<div class="full-width">
+  <figure class="listing_hero">
+    <%= image_tag unsplash_image_url(@listing.city_name, width: 1400, height: 600),
+      alt: @listing.city_name, class: 'listing_hero_image'
+    %>
+  </figure>
 </div>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>
+<article class="listing">
+  <h1 class="listing_title"><%= @listing.address %></h1>
+
+  <div class="listing_provision-overview">
+    <div class="listing_provision-overview_guest-max">
+      <%= adult_faces_emoji(@provision.guests_max) %>
+    </div>
+    <div class="listing_provision-overview_bedroom-count">
+      <%= bedroom_emoji(@provision.bedroom_count) %>
+    </div>
+    <div class="listing_provision-overview_bed-count">
+      <%= bed_emoji(@provision.bed_count) %>
+    </div>
+  </div>
+
+  <% if @new_trip %>
+    <section class="listing_book" id="listing_book">
+      <%= render partial: 'trips/form', locals: { trip: @new_trip, guests_max: @provision.guests_max } %>
+    </section>
+  <% elsif !user_signed_in? %>
+    <nav class="nav is-centered">
+      <h5><%= link_to 'Sign In', new_user_session_path %></h5>
+      <h6><%= link_to 'Sign Up', new_user_registration_path %></h6>
+    </nav>
+  <% end %>
+
+  <% if @provision %>
+    <aside>
+      <%= render @provision %>
+    </aside>
+  <% end %>
+
+  <figure>
+    <%= render partial: 'map_embed', locals: { lat: @listing.lat, lng: @listing.lng } %>
+  </figure>
+
+  <% host_profile = @listing.host.profile %>
+  <% if host_profile %>
+    <aside>
+      <h2>Hosted by <%= link_to host_profile.first_name, host_profile %></h2>
+      <%= render host_profile, locals: { small: true } %>
+
+      <nav>
+        <h5>
+          <%= link_to 'Contact host', listing_messages_path(@listing)%>
+        </h5>
+      </nav>
+    </aside>
+  <% end %>
+
+  <% if current_user == @listing.host %>
+    <nav>
+      <%= link_to 'Edit', edit_listing_path(@listing) %>
+      <%= link_to 'Edit Provisions', edit_listing_listing_provisions_path(@listing) %>
+    </nav>
+  <% end %>
+</article>

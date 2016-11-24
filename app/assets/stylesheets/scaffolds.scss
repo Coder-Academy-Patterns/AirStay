@@ -1,17 +1,63 @@
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  margin: 33px;
+@import "reusables/base";
+
+* {
+  box-sizing: border-box;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  margin: 33px;
+html {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: system, "-apple-system", "-webkit-system-font", BlinkMacSystemFont, "Helvetica Neue", "Helvetica", "Segoe UI", "Roboto", "Arial", "freesans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 18px;
+	font-size: calc(112.5% + 2 * (100vw - 600px) / 400);
+  line-height: $line-height;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  > *:not(.full-width) {
+    @include inner-block;
+  }
+
+  header {
+    margin-bottom: line-height-rem(1);
+
+    &:first-child {
+      margin-top: line-height-rem(1.5);
+    }
+  }
+  section,
+  article,
+  nav,
+  aside {
+    margin-bottom: line-height-rem(2);
+  }
+}
+
+p, ol, ul, td, h1, h2, h3, h4, h5, h6, input {
+  margin-top: 0;
+  margin-bottom: 1.35rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 pre {
@@ -21,35 +67,40 @@ pre {
 }
 
 a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
+  text-decoration: none;
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: $key-color;
   }
 }
 
 th {
-  padding-bottom: 5px;
+  text-align: left;
+  padding: 0.2rem;
 }
 
 td {
-  padding-bottom: 7px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0.2rem;
 }
 
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
+.field {
+  margin-bottom: line-height-rem(0.5);
+}
+
+
+#flash {
+  background-color: white;
+
+  > * {
+    @include inner-block;
+
+    padding: line-height-rem(1) 0;
   }
 }
-
-#notice {
+#flash-alert {
+  color: red;
+}
+#flash-notice {
   color: green;
 }
 
@@ -60,27 +111,19 @@ div {
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+  margin-bottom: line-height-rem(1);
+  background-color: white;
 
   h2 {
-    text-align: left;
+    margin: 0;
+    text-align: center;
+    font-size: 1rem;
     font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0;
-    background-color: #c00;
-    color: #fff;
+    color: #c00;
   }
 
   ul li {
-    font-size: 12px;
-    list-style: square;
+    font-style: italic;
   }
 }
 

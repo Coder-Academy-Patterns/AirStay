@@ -1,0 +1,1 @@
+json.array! @listing_provisions, partial: 'listing_provisions/listing_provision', as: :listing_provision

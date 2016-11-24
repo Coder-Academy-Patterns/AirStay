@@ -1,0 +1,16 @@
+<header class="messages_header">
+  <h1>Messages for <%= link_to @listing.address, @listing %></h1>
+</header>
+
+<section>
+  <% @messages.each do |message| %>
+    <article class="message">
+      <div class="message_content"><%= message.content %></div>
+      <h6 class="message_created-at">Sent on <%= time_tag message.created_at %></h6>
+    </article>
+  <% end %>
+</section>
+
+<section>
+  <%= render 'form', message: @new_message %>
+</section>

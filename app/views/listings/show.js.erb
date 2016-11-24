@@ -1,0 +1,3 @@
+<% if @new_trip %>
+document.getElementById('listing_book').innerHTML = '<%=j render partial: 'trips/form', locals: { trip: @new_trip, guests_max: @provision.guests_max } %>';
+<% end %>

@@ -1,0 +1,26 @@
+<div class="weather">
+  <div class="weather_sun">
+    <h5 class="weather_sun_rise">
+      <i class="fa fa-sun-o" aria-hidden="true"></i> <%= weather.dig('astronomy', 'sunrise') %>
+    </h5>
+    <h5 class="weather_sun_set">
+      <i class="fa fa-moon-o" aria-hidden="true"></i> <%= weather.dig('astronomy', 'sunset') %>
+    </h5>
+  </div>
+
+  <ol class="weather_forecast">
+    <% weather.dig('item', 'forecast').each do |forecast_item| %>
+      <li class="weather_forecast_item">
+        <div class="weather_forecast_item_weekday">
+          <%= forecast_item['day'] %>
+        </div>
+        <div class="weather_forecast_item_temperature">
+          <%= forecast_item['low'] %> – <%= forecast_item['high'] %>
+        </div>
+        <div class="weather_forecast_item_condition">
+          <%= forecast_item['text'] %>
+        </div>
+      </li>
+    <% end %>
+  </ol>
+</div>

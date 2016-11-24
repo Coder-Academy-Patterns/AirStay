@@ -1,3 +1,67 @@
-// Place all the styles related to the Listings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "reusables/card";
+@import "reusables/flexbox";
+
+$listing-gutter: line-height-rem(0.25);
+
+.listings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  //margin: -$listing-gutter;
+}
+
+.listing {
+  &.is-card {
+    flex-basis: ($measure * 0.5);
+    max-width: ($measure * 0.5);
+    flex-shrink: 0;
+    margin: 0;
+    padding: $listing-gutter;
+  }
+
+  &_primary-link {
+     @include card;
+
+     display: block;
+  }
+  &_primary-link:hover &_image {
+    opacity: 0.85;
+  }
+
+  &_thumbnail {
+    margin: 0;
+    margin-bottom: line-height-rem(0.333);
+  }
+
+  &_thumbnail_image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &_hero {
+    margin: 0;
+    margin-bottom: line-height-rem(0.333);
+  }
+
+  &_hero_image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &_title {
+    text-align: center;
+    margin-bottom: line-height-rem(0.5);
+  }
+
+  &_provision-overview {
+    @include flex-row($center: true, $gutter: line-height-rem(1));
+    margin-bottom: line-height-rem(1);
+    font-size: 1.5rem;
+  }
+
+  &_book {
+    @include card;
+  }
+}

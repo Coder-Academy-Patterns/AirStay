@@ -6,9 +6,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
   </head>
 
   <body>
-    <%= yield %>
+    <section id="flash">
+      <% flash.each do |type, message| %>
+        <%= content_tag :h5, message, id: "flash-#{ type }" %>
+      <% end %>
+    </section>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
