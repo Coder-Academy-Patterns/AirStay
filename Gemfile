@@ -48,6 +48,8 @@ group :development, :test do
   gem 'rails-controller-testing'
 
   gem 'dotenv-rails'
+
+  gem 'faker'
 end
 
 group :development do

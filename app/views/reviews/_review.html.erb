@@ -1,0 +1,18 @@
+<article class="review">
+  <footer>
+    <% if review.from_guest %>
+      <%= render review.trip.guest.profile %>
+    <% else %>
+      <%= render review.trip.listing.host.profile %>
+    <% end %>
+  </footer>
+
+  <header class="review_header">
+    <%= time_tag review.trip.check_in_date, class: 'review_date' %>
+    <%= render partial: 'reviews/rating', locals: { rating: review.rating } %>
+  </header>
+
+  <p class="review_content">
+    <%= review.content %>
+  </p>
+</article>

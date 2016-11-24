@@ -17,6 +17,11 @@ $listing-gutter: line-height-rem(0.25);
     flex-shrink: 0;
     margin: 0;
     padding: $listing-gutter;
+
+    &.is-mini {
+      flex-basis: ($measure * 0.333);
+    max-width: ($measure * 0.333);
+    }
   }
 
   &_primary-link {

@@ -11,7 +11,10 @@ class Trip < ApplicationRecord
     end
   end
 
-  validates :check_in_date, :check_out_date, overlap: { exclude_edges: [:check_in_date, :check_out_date] }, checked_dates: true
+  validates :check_in_date, :check_out_date, overlap: {
+    scope: 'listing_id',
+    exclude_edges: [:check_in_date, :check_out_date]
+  }, checked_dates: true
   validates :stripe_charge_id, presence: true, on: :create
 
   scope :with_listing, -> (listing) { where(listing: listing) }
@@ -51,4 +54,8 @@ class Trip
   def cost
     TripCost.new(listing, check_in_date, check_out_date) if valid?(:display)
   end
+end
+
+class Trip
+  has_many :reviews
 end

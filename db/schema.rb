@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123013438) do
+ActiveRecord::Schema.define(version: 20161123032354) do
 
   create_table "listing_provisions", force: :cascade do |t|
     t.integer  "listing_id",                     null: false
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20161123013438) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["country_code"], name: "index_regions_on_country_code"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "trip_id",                            null: false
+    t.text     "content",                            null: false
+    t.decimal  "rating",     precision: 2, scale: 1, null: false
+    t.boolean  "from_guest",                         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["trip_id"], name: "index_reviews_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :listings do
     resources :listing_provisions, controller: :listing_provisions, path: 'provisions'
     resources :messages, only: [:index, :create]
+    resources :reviews
   end
   resources :trips, except: [:new]
   

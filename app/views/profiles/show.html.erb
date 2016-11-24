@@ -1,19 +1,39 @@
-<p id="notice"><%= notice %></p>
+<header>
+  <h1>
+    Hey, I’m <%= @profile.full_name %>!
+  </h1>
+</header>
+
+<% if @profile.user == current_user %>
+  <nav>
+    <%= link_to 'Edit', edit_profile_path(@profile) %>
+  </nav>
+<% end %>
 
 <p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
+  <strong>My Trips:</strong>
+  <%= @profile.user.trips.count %>
 </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
+<aside>
+  <h2>Listings</h2>
+  <div class="listings">
+    <%= render @profile.user.listings %>
+  </div>
+</aside>
 
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
+<section>
+  <h2>
+    Reviews from guests
+    <%= render partial: 'reviews/rating', locals: { rating: @profile.user.reviews_from_guests.average(:rating) } %>
+  </h2>
+  <%= render @profile.user.reviews_from_guests %>
+</section>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<section>
+  <h2>
+    Reviews from hosts
+    <%= render partial: 'reviews/rating', locals: { rating: @profile.user.reviews_from_hosts.average(:rating) } %>
+  </h2>
+  <%= render @profile.user.reviews_from_hosts %>
+</section>
