@@ -36,6 +36,8 @@ gem 'money-rails'
 
 gem 'lodash-rails'
 
+gem 'faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -48,8 +50,6 @@ group :development, :test do
   gem 'rails-controller-testing'
 
   gem 'dotenv-rails'
-
-  gem 'faker'
 end
 
 group :development do
