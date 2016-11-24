@@ -26,6 +26,7 @@ class ListingProvisionsController < ApplicationController
   # POST /listing_provisions.json
   def create
     @listing_provision = ListingProvision.new(listing_provision_params)
+    @listing_provision.listing = @listing
 
     respond_to do |format|
       if @listing_provision.save
@@ -74,6 +75,6 @@ class ListingProvisionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_provision_params
-      params.require(:listing_provision).permit(:listing_id, :start_date, :guests_max, :bedroom_count, :bed_count, :nights_min, :nightly_fee_cents, :cleaning_fee_cents)
+      params.require(:listing_provision).permit(:start_date, :guests_max, :bedroom_count, :bed_count, :nights_min, :nightly_fee_cents, :cleaning_fee_cents)
     end
 end
